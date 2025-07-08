@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "name": "Customer",
+  "namespace" : "io.kineticedge.cp.sr",
+  "fields": [
+    {
+      "type": "string",
+      "name": "last_name"
+    },
+    {
+      "type": "string",
+      "name": "first_name",
+      "default" : "n/a"
+    }
+  ]
+}

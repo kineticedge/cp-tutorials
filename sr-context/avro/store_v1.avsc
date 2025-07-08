@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Store",
+  "namespace" : "io.kineticedge.cp.sr",
+  "fields": [
+    {
+      "type": "string",
+      "name": "store_name"
+    }
+  ]
+}
