@@ -1,0 +1,60 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+
+  - job_name: kafka
+    #scrape_interval: 1s
+    static_configs:
+      - targets:
+          - broker-1:7071
+        labels:
+          cluster_type: "kafka"
+          cluster_id: "kafka-core"
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: "(.*):(.*)"
+        target_label: instance
+        replacement: "$1"
+  - job_name: schema-registry-src1
+    #scrape_interval: 1s
+    static_configs:
+      - targets:
+          - schema-registry-src1:7071
+          - schema-registry-src1-backup:7071
+        labels:
+          cluster_type: "schema-registry"
+          cluster_id: "schema-registry-src1"
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: "(.*):(.*)"
+        target_label: instance
+        replacement: "$1"
+  - job_name: schema-registry-src2
+    #scrape_interval: 1s
+    static_configs:
+      - targets:
+          - schema-registry-src2:7071
+          - schema-registry-src2-backup:7071
+        labels:
+          cluster_type: "schema-registry"
+          cluster_id: "schema-registry-src2"
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: "(.*):(.*)"
+        target_label: instance
+        replacement: "$1"
+  - job_name: schema-registry-dst
+    #scrape_interval: 1s
+    static_configs:
+      - targets:
+          - schema-registry-dst:7071
+          - schema-registry-dst-backup:7071
+        labels:
+          cluster_type: "schema-registry"
+          cluster_id: "schema-registry-dst"
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: "(.*):(.*)"
+        target_label: instance
+        replacement: "$1"
